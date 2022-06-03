@@ -25,8 +25,16 @@ def count_words(text: str) -> Dict[str, int]:
              ключ - слово в нижнем регистре
              значение - количество вхождений слов в текст
     """
-
-    # пиши свой код здесь
+    import re
+    Dict = {}
+    words = re.split(r"[-;?!,.\s]\s*", text)
+    for word in words:
+        if not any(map(str.isdigit, word)):
+            try:
+                Dict[word.lower()] += 1
+            except:
+                if word != '':
+                    Dict[word.lower()] = 1
 
     return {}
 
@@ -40,7 +48,11 @@ def exp_list(numbers: List[int], exp: int) -> List[int]:
     :return: список натуральных чисел
     """
 
-    # пиши свой код здесь
+    counter = 0
+    for word in numbers:
+        word = word ** 2
+        numbers[counter] = word
+        counter += 1
 
     return []
 
