@@ -36,7 +36,7 @@ def count_words(text: str) -> Dict[str, int]:
                 if word != '':
                     Dict[word.lower()] = 1
 
-    return {}
+    return Dict
 
 
 def exp_list(numbers: List[int], exp: int) -> List[int]:
@@ -50,11 +50,11 @@ def exp_list(numbers: List[int], exp: int) -> List[int]:
 
     counter = 0
     for word in numbers:
-        word = word ** 2
+        word = word ** exp
         numbers[counter] = word
         counter += 1
 
-    return []
+    return numbers
 
 
 def get_cashback(operations: List[Dict[str, Any]], special_category: List[str]) -> float:
@@ -120,3 +120,9 @@ def csv_reader(header: str) -> int:
     # пиши свой код здесь
 
     return 0
+
+
+
+#message = 'hello, my baby, hello, my honey'
+#for word in count_words(message):
+    #print(word, ':', count_words(message)[word])
