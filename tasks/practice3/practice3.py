@@ -150,6 +150,5 @@ def csv_reader(header: str) -> int:
 
 
 
-#message = 'hello, my baby, hello, my honey'
 #for word in count_words(message):
     #print(word, ':', count_words(message)[word])
