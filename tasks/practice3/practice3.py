@@ -26,17 +26,17 @@ def count_words(text: str) -> Dict[str, int]:
              значение - количество вхождений слов в текст
     """
     import re
-    Dict = {}
+    dict = {}
     words = re.split(r"[-;?!,.\s]\s*", text)
     for word in words:
         if not any(map(str.isdigit, word)):
             try:
-                Dict[word.lower()] += 1
+                dict[word.lower()] += 1
             except:
                 if word != '':
-                    Dict[word.lower()] = 1
+                    dict[word.lower()] = 1
 
-    return Dict
+    return dict
 
 
 def exp_list(numbers: List[int], exp: int) -> List[int]:
@@ -117,9 +117,36 @@ def csv_reader(header: str) -> int:
     :return: количество уникальных элементов в столбце
     """
 
-    # пиши свой код здесь
+    import csv
+    words = {}
+    unic_words = 0
+    with open(get_path_to_file(), encoding='utf-8') as r_file:
+        file_reader = csv.reader(r_file, delimiter=",")
+        line_counter = 0
+        chosen_counter = -1
+        for row in file_reader:
+            word_counter = 0
+            for word in row:
+                if line_counter == 0:
+                    if word == header:
+                        chosen_counter = word_counter
+                        words[word] = 1
+                        print("chosen counter =", chosen_counter)
+                else:
+                    if word_counter == chosen_counter:
+                        words[word] = 1
+                word_counter += 1
+            line_counter += 1
+        for word in words:
+            if word != header:
+                unic_words += 1
 
-    return 0
+
+
+
+
+    return unic_words
+
 
 
 
