@@ -24,7 +24,6 @@ def get_position_level(position_name: str) -> int:
 class Employee:
     """
     Класс - сотрудник
-
     Возможности:
     1. Реализована возможность сравнения двух сотрудников в зависимости от занимаемой должности - метод __eq__
     2. Возможность получить зарплату через метод get_salary
@@ -39,6 +38,12 @@ class Employee:
         """
 
         # пиши свой код здесь
+        if not (isinstance(name, str) and isinstance(position, str) and isinstance(salary, int)):
+            raise ValueError
+
+        self.name = name
+        self.position = position
+        self._salary = salary
 
     def get_salary(self) -> int:
         """
@@ -46,16 +51,24 @@ class Employee:
         """
 
         # пиши свой код здесь
+        return self._salary
 
     def __eq__(self, other: object) -> bool:
         """
         Задача: реализовать метод сравнение двух сотрудников, чтобы все тесты проходили.
-
         Сравнение происходит по уровню позиции см. `get_position_level`.
         Если что-то идет не так - бросаются исключения. Смотрим что происходит в тестах.
         """
 
         # пиши свой код здесь
+        if isinstance(other, Employee) and isinstance(self, Employee):
+             try:
+                 return get_position_level(self.position) == get_position_level(other.position)
+             except NoSuchPositionError:
+                 raise ValueError
+        else:
+            raise TypeError
+        # return self.name == other.name and self.position == other.position and self._salary == get_salary(other)
 
     def __str__(self):
         """
@@ -64,6 +77,7 @@ class Employee:
         """
 
         # пиши свой код здесь
+        return f'name: {self.name} position: {self.position}'
 
     def __hash__(self):
         return id(self)
@@ -83,6 +97,8 @@ class Developer(Employee):
         """
 
         # пиши свой код здесь
+        Employee.__init__(self, name=name, position=self.position, salary=salary)
+        self.language = language
 
 
 class Manager(Employee):
@@ -98,3 +114,4 @@ class Manager(Employee):
         """
 
         # пиши свой код здесь
+        Employee.__init__(self, name=name, position=self.position, salary=salary)
